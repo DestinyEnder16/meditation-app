@@ -1,20 +1,23 @@
-import Btn from '@/src/components/Btn';
+import Btn from '@/src/components/ActionBtn';
 import ContainerView from '@/src/components/ContainerView';
 import InfoText from '@/src/components/InfoText';
+import { Fonts } from '@/src/constants/fonts';
 import { HeroLogo, Logo } from '@/src/constants/images';
 import { ImageBackground, Text, View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 
 function TextField() {
   return (
     <View style={{ alignItems: 'center', gap: 18, marginTop: 24 }}>
-      <Text style={{ fontSize: 30, fontWeight: 700 }}>We are what we do</Text>
+      <Text style={{ fontSize: 30, fontFamily: Fonts.bold }}>
+        We are what we do
+      </Text>
       <Text
         style={{
           color: '#aaa',
           textAlign: 'center',
           fontSize: 16,
           lineHeight: 30,
+          fontFamily: Fonts.thin,
         }}
       >
         Thousands of people are using silent moon for small meditation
@@ -25,26 +28,26 @@ function TextField() {
 
 export default function LoginIndex() {
   return (
-    <SafeAreaView>
+    <>
       <ImageBackground
         resizeMode="stretch"
         source={require('@/assets/images/Frame.png')}
         style={{
           alignItems: 'center',
           width: '100%',
-          paddingTop: 32,
-          paddingBottom: 140,
+          paddingTop: 62,
+          paddingBottom: 100,
           backgroundColor: '#FFF',
         }}
       >
         <Logo />
 
-        <View style={{ marginTop: 48 }}>
+        <View style={{ marginTop: 100 }}>
           <HeroLogo />
         </View>
       </ImageBackground>
 
-      <ContainerView>
+      <ContainerView addSafeArea={false}>
         <TextField />
 
         <View
@@ -55,13 +58,10 @@ export default function LoginIndex() {
             gap: 20,
           }}
         >
-          <Btn
-            text="SIGN UP"
-            styles={{ backgroundColor: '#8E97FD', txtColor: '#F6F1FB' }}
-          />
-          <InfoText instruction="LOG IN" color="#8e97fd" />
+          <Btn text="SIGN UP" txtColor="#eee" />
+          <InfoText instruction="LOG IN" color="#8e97fd" href="/login/signin" />
         </View>
       </ContainerView>
-    </SafeAreaView>
+    </>
   );
 }
