@@ -10,7 +10,10 @@ import AppKeyboardScrollView from './AppKeyboardScrollView';
 
 const LoginSchema = z.object({
   email: z.email('Please enter a valid email address'),
-  password: z.string().min(6, 'Password must be at least 6 characters long'),
+  password: z
+    .string()
+    .min(6, 'Password must be at least 6 characters long')
+    .regex(/[A-Z]/, 'Password must contain at least one capital letter'),
 });
 
 const SignupSchema = LoginSchema.extend({
@@ -27,7 +30,9 @@ type formProps = {
 };
 
 const RegistrationForm: React.FC<formProps> = ({ type }) => {
-  const schema = (type === 'signup' ? SignupSchema : LoginSchema) as typeof SignupSchema;
+  const schema = (
+    type === 'signup' ? SignupSchema : LoginSchema
+  ) as typeof SignupSchema;
 
   const {
     control,
@@ -136,7 +141,9 @@ const RegistrationForm: React.FC<formProps> = ({ type }) => {
               />
             </View>
             {errors.privacyPolicy && (
-              <Text style={styles.errorMsg}>{errors.privacyPolicy.message}</Text>
+              <Text style={styles.errorMsg}>
+                {errors.privacyPolicy.message}
+              </Text>
             )}
           </View>
         )}
