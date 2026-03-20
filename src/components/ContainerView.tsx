@@ -17,7 +17,7 @@ export default function ContainerView({
         alignItems: 'center',
         // paddingTop: 36,
         paddingHorizontal: 25,
-        height: '100%',
+        flex: 1,
         backgroundColor: '#fff',
       }}
     >
@@ -29,7 +29,7 @@ export default function ContainerView({
         alignItems: 'center',
         // paddingTop: 36,
         paddingHorizontal: 25,
-        height: '100%',
+        flex: 1,
         backgroundColor: '#fff',
       }}
     >
