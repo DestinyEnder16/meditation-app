@@ -1,8 +1,9 @@
-import { Stack } from 'expo-router';
-import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { useFonts } from 'expo-font';
+import { Stack } from 'expo-router';
 import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
+import { KeyboardProvider } from 'react-native-keyboard-controller';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -25,10 +26,12 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaProvider>
-      <Stack screenOptions={{ headerShown: false, statusBarStyle: 'dark' }}>
-        <Stack.Screen name="login/index" />
-      </Stack>
-    </SafeAreaProvider>
+    <KeyboardProvider>
+      <SafeAreaProvider>
+        <Stack screenOptions={{ headerShown: false, statusBarStyle: 'dark' }}>
+          <Stack.Screen name="index" />
+        </Stack>
+      </SafeAreaProvider>
+    </KeyboardProvider>
   );
 }

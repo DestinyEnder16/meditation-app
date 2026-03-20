@@ -7,6 +7,7 @@ type btnProps = {
   icon?: React.ReactNode;
   text: string;
   txtColor?: string;
+  onPress?: () => void;
 };
 
 const btnStyles = StyleSheet.create({
@@ -26,10 +27,12 @@ export default function Btn({
   txtColor,
   styles,
   icon,
+  onPress,
   isSecondary = false,
 }: btnProps) {
   return (
     <Pressable
+      onPress={onPress}
       style={[
         styles
           ? { backgroundColor: styles.backgroundColor }
