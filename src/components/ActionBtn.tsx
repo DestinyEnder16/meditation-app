@@ -1,5 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { Fonts } from '../constants/fonts';
+import { Colors } from '../constants/themes';
 
 type btnProps = {
   styles?: { backgroundColor: string };
@@ -36,7 +37,9 @@ export default function Btn({
       style={[
         styles
           ? { backgroundColor: styles.backgroundColor }
-          : { backgroundColor: isSecondary ? '#7583CA' : '#8e97fd' },
+          : {
+              backgroundColor: isSecondary ? Colors.secondary : Colors.primary,
+            },
 
         {
           borderRadius: 38,

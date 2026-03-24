@@ -4,6 +4,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { UserProvider } from '../contexts/userContext';
 
 SplashScreen.preventAutoHideAsync();
 
@@ -28,9 +29,11 @@ export default function RootLayout() {
   return (
     <KeyboardProvider>
       <SafeAreaProvider>
-        <Stack screenOptions={{ headerShown: false, statusBarStyle: 'dark' }}>
-          <Stack.Screen name="index" />
-        </Stack>
+        <UserProvider>
+          <Stack screenOptions={{ headerShown: false, statusBarStyle: 'dark' }}>
+            <Stack.Screen name="index" />
+          </Stack>
+        </UserProvider>
       </SafeAreaProvider>
     </KeyboardProvider>
   );

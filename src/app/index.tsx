@@ -5,6 +5,7 @@ import { Fonts } from '@/src/constants/fonts';
 import { HeroLogo, Logo } from '@/src/constants/images';
 import { router } from 'expo-router';
 import { ImageBackground, Text, View } from 'react-native';
+import { Colors } from '../constants/themes';
 
 function TextField() {
   return (
@@ -61,10 +62,14 @@ export default function LoginIndex() {
         >
           <Btn
             text="SIGN UP"
-            txtColor="#eee"
+            txtColor={Colors.milk}
             onPress={() => router.navigate('/auth/signup')}
           />
-          <InfoText instruction="LOG IN" color="#8e97fd" href="/auth/signin" />
+          <InfoText
+            instruction="LOG IN"
+            color={Colors.primary}
+            href="/auth/signin"
+          />
         </View>
       </ContainerView>
     </>

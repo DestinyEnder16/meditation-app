@@ -1,41 +1,33 @@
+import AppKeyboardScrollView from '@/src/components/AppKeyboardScrollView';
 import Box from '@/src/components/Box';
 import ContainerView from '@/src/components/ContainerView';
 import RegistrationForm from '@/src/components/Form';
 import InfoText from '@/src/components/InfoText';
-import { BackBtn } from '@/src/constants/images';
-import { router } from 'expo-router';
-import { ImageBackground, Pressable, StyleSheet, View } from 'react-native';
+import { Colors } from '@/src/constants/themes';
+import { StyleSheet, View } from 'react-native';
 
 export default function Login() {
   return (
-    <View style={{ flex: 1 }}>
-      <ImageBackground
-        resizeMode="cover"
-        source={require('@/assets/images/vector.png')}
-        style={styles.background}
-      >
-        <Pressable style={styles.btn} onPress={() => router.back()}>
-          <BackBtn />
-        </Pressable>
-      </ImageBackground>
-
-      <ContainerView addSafeArea={true}>
+    <AppKeyboardScrollView>
+      <View style={{ flex: 1 }}>
         <Box heading="Welcome Back!" />
+        <ContainerView addSafeArea={false}>
+          <RegistrationForm type="login" />
 
-        <RegistrationForm type="login" />
-
-        <View style={{ marginTop: 100 }}>
-          <InfoText color="#8e97fd" instruction="SIGN UP" href="/auth/signup" />
-        </View>
-      </ContainerView>
-    </View>
+          <View style={{ marginTop: 30 }}>
+            <InfoText
+              color={Colors.primary}
+              instruction="SIGN UP"
+              href="/auth/signup"
+            />
+          </View>
+        </ContainerView>
+      </View>
+    </AppKeyboardScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  btnTxt: {
-    fontSize: 24,
-  },
   btn: {
     borderRadius: 1000,
     borderWidth: 1,
@@ -43,11 +35,5 @@ const styles = StyleSheet.create({
     padding: 10,
     alignSelf: 'flex-start',
     marginTop: 20,
-    marginLeft: 20,
-  },
-  background: {
-    width: '100%',
-    backgroundColor: 'white',
-    paddingTop: 55,
   },
 });
