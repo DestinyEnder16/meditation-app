@@ -1,5 +1,5 @@
-import { Pressable, StyleSheet, Text } from 'react-native';
-import { Colors } from '../constants/themes';
+import { Pressable, StyleSheet, Text } from "react-native";
+import { Colors } from "../constants/themes";
 
 interface dayProps {
   data: string;
@@ -8,20 +8,18 @@ interface dayProps {
   fn: () => void;
 }
 
-
-
 const styles = StyleSheet.create({
   day: {
     borderWidth: 1,
     borderRadius: 1000,
     width: 45,
     height: 45,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
 
-function Day({ data, id, fn, isSelected }: dayProps) {
+function Day({ data, fn, id, isSelected }: dayProps) {
   return (
     <>
       <Pressable

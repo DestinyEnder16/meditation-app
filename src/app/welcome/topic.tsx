@@ -3,11 +3,10 @@ import Card from "@/src/components/Card";
 import ContainerView from "@/src/components/ContainerView";
 import TopicHeader from "@/src/components/TopicHeader";
 import { topicData } from "@/src/constants/data";
-import { Fonts } from "@/src/constants/fonts";
 import { Colors } from "@/src/constants/themes";
 import { router } from "expo-router";
 import { useState } from "react";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { Pressable, ScrollView, View } from "react-native";
 
 export default function Home() {
   const [selectedTopics, setSelectedTopics] = useState<number[]>([]);
@@ -23,12 +22,13 @@ export default function Home() {
   }
 
   return (
-    <ContainerView addSafeArea usePadding>
+    <ContainerView addSafeArea usePadding={false}>
       <ScrollView
         showsVerticalScrollIndicator={false}
         style={{
           paddingTop: 40,
           alignSelf: "stretch",
+          paddingHorizontal: 20,
         }}
         contentContainerStyle={{ paddingBottom: 50 }}
       >

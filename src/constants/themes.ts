@@ -14,4 +14,5 @@ export const Colors = {
   gray: "#A1A4B2",
 };
 
+// #E1E1E5
 // #FEB18F

@@ -9,18 +9,26 @@ import { router } from "expo-router";
 import { useState } from "react";
 import { Text, View } from "react-native";
 
-const hours = Array.from({ length: 12 }, (_, i) =>
-  String(i + 1).padStart(2, "0"),
-);
+const hours = Array.from({ length: 12 }, (_, i) => String(i + 1));
 const minutes = Array.from({ length: 60 }, (_, i) =>
   String(i).padStart(2, "0"),
 );
 const periods = ["AM", "PM"];
 
 function Reminders() {
-  const [hour, setHour] = useState("08");
+  const [hour, setHour] = useState("8");
   const [minute, setMinute] = useState("30");
   const [period, setPeriod] = useState("PM");
+
+  const [selectedId, setSelectedId] = useState([0]);
+
+  function handleSelect(index: number) {
+    if (selectedId.includes(index)) {
+      setSelectedId((prev) => prev.filter((value) => value !== index));
+    } else {
+      setSelectedId((prev) => [...prev, index]);
+    }
+  }
 
   return (
     <ContainerView addSafeArea>
@@ -30,7 +38,14 @@ function Reminders() {
           info="Any time you can choose but we recommend first thing in the morning."
         />
 
-        <View style={{ flexDirection: "row", borderRadius: 20 }}>
+        {/*IMPORTANT : TIME PICKER*/}
+        <View
+          style={{
+            flexDirection: "row",
+            borderRadius: 20,
+            overflow: "hidden",
+          }}
+        >
           <WheelPicker items={hours} selectedValue={hour} onChange={setHour} />
           <WheelPicker
             items={minutes}
@@ -41,6 +56,7 @@ function Reminders() {
             items={periods}
             selectedValue={period}
             onChange={setPeriod}
+            infinite={false}
           />
         </View>
 
@@ -50,19 +66,21 @@ function Reminders() {
             info="Everyday is best, but we recommend picking at least five."
           />
 
-          <DayPicker />
+          <DayPicker selectedId={selectedId} handleSelectId={handleSelect} />
         </View>
 
-        <View style={{ gap: 15, marginTop: 20 }}>
-          <Btn
-            text="SAVE"
-            txtColor={Colors.white}
-            onPress={() => router.navigate("/home" as any)}
-          />
-          <Text style={{ textAlign: "center", fontFamily: Fonts.medium }}>
-            NO THANKS
-          </Text>
-        </View>
+        {selectedId.length > 0 && (
+          <View style={{ gap: 15, marginTop: 20 }}>
+            <Btn
+              text="SAVE"
+              txtColor={Colors.white}
+              onPress={() => router.navigate("/home" as any)}
+            />
+            <Text style={{ textAlign: "center", fontFamily: Fonts.medium }}>
+              NO THANKS
+            </Text>
+          </View>
+        )}
       </View>
     </ContainerView>
   );
