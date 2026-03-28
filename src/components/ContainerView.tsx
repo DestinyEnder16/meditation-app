@@ -1,6 +1,6 @@
-import React, { ReactNode } from 'react';
-import { View } from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
+import React, { ReactNode } from "react";
+import { View } from "react-native";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 type viewProps = {
   children: ReactNode;
@@ -15,14 +15,14 @@ export default function ContainerView({
   usePadding = true,
   children,
 }: viewProps) {
-  const bg = transparent ? 'transparent' : '#fff';
+  const bg = transparent ? "transparent" : "#fff";
 
   return addSafeArea ? (
     <SafeAreaView
       style={[
         usePadding && { paddingHorizontal: 25 },
         {
-          alignItems: 'center',
+          alignItems: "center",
           flex: 1,
           backgroundColor: bg,
         },
@@ -35,7 +35,7 @@ export default function ContainerView({
       style={[
         usePadding && { paddingHorizontal: 25 },
         {
-          alignItems: 'center',
+          alignItems: "center",
           flex: 1,
           backgroundColor: bg,
         },

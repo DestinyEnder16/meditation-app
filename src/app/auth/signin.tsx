@@ -4,7 +4,7 @@ import ContainerView from '@/src/components/ContainerView';
 import RegistrationForm from '@/src/components/Form';
 import InfoText from '@/src/components/InfoText';
 import { Colors } from '@/src/constants/themes';
-import { StyleSheet, View } from 'react-native';
+import { View } from 'react-native';
 
 export default function Login() {
   return (
@@ -26,14 +26,3 @@ export default function Login() {
     </AppKeyboardScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  btn: {
-    borderRadius: 1000,
-    borderWidth: 1,
-    alignContent: 'center',
-    padding: 10,
-    alignSelf: 'flex-start',
-    marginTop: 20,
-  },
-});

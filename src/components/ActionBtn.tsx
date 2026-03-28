@@ -1,9 +1,9 @@
-import { Pressable, StyleSheet, Text, View } from 'react-native';
-import { Fonts } from '../constants/fonts';
-import { Colors } from '../constants/themes';
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Fonts } from "../constants/fonts";
+import { Colors } from "../constants/themes";
 
 type btnProps = {
-  styles?: { backgroundColor: string };
+  styles?: { backgroundColor: string; paddingVertical?: number };
   isSecondary?: boolean;
   icon?: React.ReactNode;
   text: string;
@@ -13,10 +13,10 @@ type btnProps = {
 
 const btnStyles = StyleSheet.create({
   actionBtns: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-evenly',
-    width: '100%',
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-evenly",
+    width: "100%",
   },
   txt: {
     fontFamily: Fonts.medium,
@@ -35,18 +35,17 @@ export default function Btn({
     <Pressable
       onPress={onPress}
       style={[
-        styles
-          ? { backgroundColor: styles.backgroundColor }
-          : {
-              backgroundColor: isSecondary ? Colors.secondary : Colors.primary,
-            },
-
         {
           borderRadius: 38,
           borderWidth: 0.3,
           paddingVertical: 20,
-          width: '100%',
-          alignItems: 'center',
+          width: "100%",
+          alignItems: "center",
+          backgroundColor: isSecondary ? Colors.secondary : Colors.primary,
+        },
+        styles && {
+          backgroundColor: styles.backgroundColor,
+          paddingVertical: styles.paddingVertical ?? 20,
         },
       ]}
     >

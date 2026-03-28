@@ -1,22 +1,22 @@
-import Btn from '@/src/components/ActionBtn';
-import ContainerView from '@/src/components/ContainerView';
-import InfoText from '@/src/components/InfoText';
-import { Fonts } from '@/src/constants/fonts';
-import { HeroLogo, Logo } from '@/src/constants/images';
-import { router } from 'expo-router';
-import { ImageBackground, Text, View } from 'react-native';
-import { Colors } from '../constants/themes';
+import Btn from "@/src/components/ActionBtn";
+import ContainerView from "@/src/components/ContainerView";
+import InfoText from "@/src/components/InfoText";
+import { Fonts } from "@/src/constants/fonts";
+import { HeroLogo, Logo } from "@/src/constants/images";
+import { router } from "expo-router";
+import { ImageBackground, Text, View } from "react-native";
+import { Colors } from "../constants/themes";
 
 function TextField() {
   return (
-    <View style={{ alignItems: 'center', gap: 18, marginTop: 24 }}>
+    <View style={{ alignItems: "center", gap: 18, marginTop: 24 }}>
       <Text style={{ fontSize: 30, fontFamily: Fonts.bold }}>
         We are what we do
       </Text>
       <Text
         style={{
-          color: '#aaa',
-          textAlign: 'center',
+          color: Colors.gray,
+          textAlign: "center",
           fontSize: 16,
           lineHeight: 30,
           fontFamily: Fonts.thin,
@@ -33,13 +33,13 @@ export default function LoginIndex() {
     <>
       <ImageBackground
         resizeMode="stretch"
-        source={require('@/assets/images/Frame.png')}
+        source={require("@/assets/images/Frame.png")}
         style={{
-          alignItems: 'center',
-          width: '100%',
+          alignItems: "center",
+          width: "100%",
           paddingTop: 62,
           paddingBottom: 100,
-          backgroundColor: '#FFF',
+          backgroundColor: "#FFF",
         }}
       >
         <Logo />
@@ -55,15 +55,15 @@ export default function LoginIndex() {
         <View
           style={{
             marginTop: 64,
-            width: '100%',
-            alignItems: 'center',
+            width: "100%",
+            alignItems: "center",
             gap: 20,
           }}
         >
           <Btn
             text="SIGN UP"
             txtColor={Colors.milk}
-            onPress={() => router.navigate('/auth/signup')}
+            onPress={() => router.navigate("/auth/signup")}
           />
           <InfoText
             instruction="LOG IN"

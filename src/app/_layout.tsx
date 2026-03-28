@@ -4,6 +4,7 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import { KeyboardProvider } from 'react-native-keyboard-controller';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { Ionicons } from '@expo/vector-icons';
 import { UserProvider } from '../contexts/userContext';
 
 SplashScreen.preventAutoHideAsync();
@@ -14,6 +15,7 @@ export default function RootLayout() {
     'HelveticaNeue-Thin': require('../../assets/fonts/HelveticaNeueThin.otf'),
     'HelveticaNeue-Medium': require('../../assets/fonts/HelveticaNeueMedium.otf'),
     'HelveticaNeue-Bold': require('../../assets/fonts/HelveticaNeueBold.otf'),
+    ...Ionicons.font,
   });
 
   useEffect(() => {
