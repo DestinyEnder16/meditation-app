@@ -1,6 +1,7 @@
 import AnxietyLogo from '@/assets/images/anxiety.svg';
 import BackBtn from '@/assets/images/backBtn.svg';
 import Checkmark from '@/assets/images/checkmark.svg';
+import Ellipse from '@/assets/images/circle.svg';
 import CourseCard from '@/assets/images/course-card.svg';
 import DarkPlayBtn from '@/assets/images/dark-play-btn.svg';
 import DownloadIcon from '@/assets/images/download-icon.svg';
@@ -16,6 +17,8 @@ import FocusIcon from '@/assets/images/home__focus.svg';
 import HappinessMeditatingIcon from '@/assets/images/home__happiness.svg';
 import RelaxationCourse from '@/assets/images/home__relaxation-course.svg';
 import HomeIcon from '@/assets/images/house-icon.svg';
+import Line1 from '@/assets/images/line1.svg';
+import Line2 from '@/assets/images/line2.svg';
 import Logo from '@/assets/images/login-logo.svg';
 import HeroLogo from '@/assets/images/login-woman-on-couch.svg';
 import MeditateIcon from '@/assets/images/meditate-icon.svg';
@@ -63,6 +66,7 @@ export {
   CourseCard,
   DarkPlayBtn,
   DownloadIcon,
+  Ellipse,
   EyeClosed,
   FacebookIcon,
   FavoriteIcon,
@@ -74,6 +78,8 @@ export {
   HappinessMeditatingIcon,
   HeroLogo,
   HomeIcon,
+  Line1,
+  Line2,
   Logo,
   MeditateFeature1,
   MeditateFeature2,

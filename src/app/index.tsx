@@ -63,7 +63,7 @@ export default function LoginIndex() {
           <Btn
             text="SIGN UP"
             txtColor={Colors.milk}
-            onPress={() => router.navigate('/auth/signup')}
+            onPress={() => router.navigate('/home/music-details')}
           />
           <InfoText
             instruction="LOG IN"
