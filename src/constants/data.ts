@@ -75,3 +75,34 @@ export const topicData = [
     id: 8,
   },
 ];
+
+export const narratorData = [
+  [
+    {
+      name: "Focus Attention",
+      duration: "10 MIN",
+    },
+    {
+      name: "Body Scan",
+      duration: "5 MIN",
+    },
+    {
+      name: "Making Happiness",
+      duration: "3 MIN",
+    },
+  ],
+  [
+    {
+      name: "Focus Attention",
+      duration: "15 MIN",
+    },
+    {
+      name: "Body Scan",
+      duration: "10 MIN",
+    },
+    {
+      name: "Making Happiness",
+      duration: "13 MIN",
+    },
+  ],
+];

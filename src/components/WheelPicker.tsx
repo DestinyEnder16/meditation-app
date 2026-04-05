@@ -23,6 +23,9 @@ const WheelPicker: React.FC<Props> = ({
 }) => {
   const listRef = useRef<FlatList<string>>(null);
   const scrollY = useRef(new Animated.Value(0)).current;
+  const snapTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const isDragging = useRef(false);
+  const lastOffset = useRef(0);
 
   const data = React.useMemo(() => {
     if (!infinite) return items;
@@ -48,38 +51,102 @@ const WheelPicker: React.FC<Props> = ({
     return () => clearTimeout(t);
   }, []);
 
-  const recenter = useCallback(
-    (rawIndex: number) => {
-      if (!infinite) return;
-      const itemIndex =
-        ((rawIndex % items.length) + items.length) % items.length;
-      const middleRepeat = Math.floor(REPEAT_COUNT / 2);
-      const centeredIndex = middleRepeat * items.length + itemIndex;
+  const clearSnapTimer = useCallback(() => {
+    if (snapTimer.current) {
+      clearTimeout(snapTimer.current);
+      snapTimer.current = null;
+    }
+  }, []);
 
-      if (Math.abs(rawIndex - centeredIndex) > items.length * 2) {
-        listRef.current?.scrollToOffset({
-          offset: centeredIndex * ITEM_HEIGHT,
-          animated: false,
-        });
-      }
-    },
-    [items.length, infinite],
-  );
+  const snapToNearest = useCallback(
+    (offsetY: number) => {
+      const index = Math.round(offsetY / ITEM_HEIGHT);
+      const snappedOffset = index * ITEM_HEIGHT;
 
-  const onMomentumScrollEnd = useCallback(
-    (e: any) => {
-      const index = Math.round(e.nativeEvent.contentOffset.y / ITEM_HEIGHT);
       if (infinite) {
         const itemIndex =
           ((index % items.length) + items.length) % items.length;
         onChange(items[itemIndex]);
-        recenter(index);
+
+        // Recenter if drifted far from middle
+        const middleRepeat = Math.floor(REPEAT_COUNT / 2);
+        const centeredIndex = middleRepeat * items.length + itemIndex;
+        if (Math.abs(index - centeredIndex) > items.length * 2) {
+          const centeredOffset = centeredIndex * ITEM_HEIGHT;
+          requestAnimationFrame(() => {
+            listRef.current?.scrollToOffset({
+              offset: centeredOffset,
+              animated: false,
+            });
+          });
+        } else if (Math.abs(offsetY - snappedOffset) > 1) {
+          listRef.current?.scrollToOffset({
+            offset: snappedOffset,
+            animated: true,
+          });
+        }
       } else {
-        onChange(items[Math.max(0, Math.min(index, items.length - 1))]);
+        const clampedIndex = Math.max(0, Math.min(index, items.length - 1));
+        onChange(items[clampedIndex]);
+        const clampedOffset = clampedIndex * ITEM_HEIGHT;
+        if (Math.abs(offsetY - clampedOffset) > 1) {
+          listRef.current?.scrollToOffset({
+            offset: clampedOffset,
+            animated: true,
+          });
+        }
       }
     },
-    [items, onChange, recenter, infinite],
+    [items, onChange, infinite],
   );
+
+  const scheduleSnap = useCallback(
+    (offsetY: number) => {
+      clearSnapTimer();
+      snapTimer.current = setTimeout(() => {
+        if (!isDragging.current) {
+          snapToNearest(offsetY);
+        }
+      }, 100);
+    },
+    [clearSnapTimer, snapToNearest],
+  );
+
+  const onScrollBeginDrag = useCallback(() => {
+    isDragging.current = true;
+    clearSnapTimer();
+  }, [clearSnapTimer]);
+
+  const onScrollEndDrag = useCallback(
+    (e: any) => {
+      isDragging.current = false;
+      // Schedule a fallback snap in case onMomentumScrollEnd doesn't fire
+      // (happens when the user lifts their finger without flicking)
+      scheduleSnap(e.nativeEvent.contentOffset.y);
+    },
+    [scheduleSnap],
+  );
+
+  const onMomentumScrollEnd = useCallback(
+    (e: any) => {
+      isDragging.current = false;
+      clearSnapTimer();
+      snapToNearest(e.nativeEvent.contentOffset.y);
+    },
+    [clearSnapTimer, snapToNearest],
+  );
+
+  const onScroll = useRef(
+    Animated.event(
+      [{ nativeEvent: { contentOffset: { y: scrollY } } }],
+      {
+        useNativeDriver: true,
+        listener: (e: any) => {
+          lastOffset.current = e.nativeEvent.contentOffset.y;
+        },
+      },
+    ),
+  ).current;
 
   const renderItem = useCallback(
     ({ index }: { item: string; index: number }) => {
@@ -120,6 +187,7 @@ const WheelPicker: React.FC<Props> = ({
         : items[index];
 
       const handlePress = () => {
+        clearSnapTimer();
         listRef.current?.scrollToOffset({
           offset: index * ITEM_HEIGHT,
           animated: true,
@@ -151,7 +219,7 @@ const WheelPicker: React.FC<Props> = ({
         </Pressable>
       );
     },
-    [scrollY, items, infinite],
+    [scrollY, items, infinite, clearSnapTimer, onChange],
   );
 
   return (
@@ -165,11 +233,10 @@ const WheelPicker: React.FC<Props> = ({
         showsVerticalScrollIndicator={false}
         snapToInterval={ITEM_HEIGHT}
         decelerationRate="fast"
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-          { useNativeDriver: true },
-        )}
+        onScroll={onScroll}
         scrollEventThrottle={16}
+        onScrollBeginDrag={onScrollBeginDrag}
+        onScrollEndDrag={onScrollEndDrag}
         onMomentumScrollEnd={onMomentumScrollEnd}
         contentContainerStyle={styles.contentContainer}
         getItemLayout={(_, index) => ({
@@ -178,6 +245,11 @@ const WheelPicker: React.FC<Props> = ({
           index,
         })}
         initialScrollIndex={initialIndex}
+        overScrollMode="never"
+        bounces={false}
+        windowSize={3}
+        initialNumToRender={8}
+        removeClippedSubviews={true}
       />
     </View>
   );
@@ -187,8 +259,8 @@ const styles = StyleSheet.create({
   container: {
     height: PICKER_HEIGHT,
     overflow: "hidden",
-    flex: 1,
     backgroundColor: "#F5F5F9",
+    width: 80,
   },
   item: {
     height: ITEM_HEIGHT,

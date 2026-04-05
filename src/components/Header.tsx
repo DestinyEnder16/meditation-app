@@ -5,22 +5,48 @@ import { Colors } from "../constants/themes";
 type headerProps = {
   header: string;
   info: string;
+  alignCenter?: boolean;
+  headerFontSize?: number;
+  infoFontSize?: number;
 };
 
-function Header({ header, info }: headerProps) {
+function Header({
+  header,
+  info,
+  alignCenter,
+  headerFontSize,
+  infoFontSize,
+}: headerProps) {
   return (
     <View style={{ gap: 10 }}>
-      <Text style={styles.header}>{header}</Text>
-      <Text style={styles.info}>{info}</Text>
+      <Text
+        style={[
+          styles.header,
+          { textAlign: alignCenter ? "center" : "left" },
+          headerFontSize ? { fontSize: headerFontSize } : null,
+        ]}
+      >
+        {header}
+      </Text>
+      <Text
+        style={[
+          styles.info,
+          { textAlign: alignCenter ? "center" : "left" },
+          infoFontSize ? { fontSize: infoFontSize } : null,
+        ]}
+      >
+        {info}
+      </Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   header: {
-    fontFamily: Fonts.medium,
+    fontFamily: Fonts.bold,
     fontSize: 28,
     lineHeight: 35,
+    color: Colors.dark,
   },
   info: {
     fontFamily: Fonts.thin,

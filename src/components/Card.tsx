@@ -1,7 +1,7 @@
-import React from "react";
-import { Text, View } from "react-native";
-import { Fonts } from "../constants/fonts";
-import { Colors } from "../constants/themes";
+import React from 'react';
+import { Text, View } from 'react-native';
+import { Fonts } from '../constants/fonts';
+import { Colors } from '../constants/themes';
 
 interface IconProps {
   width?: number;
@@ -22,7 +22,7 @@ interface cardProps {
 function Card({
   icon: Icon,
   text,
-  type = "small",
+  type = 'small',
   bgColor,
   txtColor = Colors.dark,
   wrapTxt = false,
@@ -30,31 +30,31 @@ function Card({
   return (
     <View
       style={[
-        type === "small" ? { height: 167 } : { height: 210 },
+        type === 'small' ? { height: 167 } : { height: 210 },
         {
           backgroundColor: bgColor,
           borderRadius: 10,
           paddingBottom: 10,
           gap: 15,
-          overflow: "hidden",
+          overflow: 'hidden',
           paddingHorizontal: 10,
-          justifyContent: "space-between",
+          justifyContent: 'space-between',
         },
       ]}
     >
       {Icon && (
-        <View style={{ alignSelf: "center" }}>
-          <Icon height={type === "small" ? 85 : 122} />
+        <View style={{ alignSelf: 'center' }}>
+          <Icon height={type === 'small' ? 85 : 122} />
         </View>
       )}
       <Text
         style={[
-          wrapTxt && { width: 130, lineHeight: 20 },
+          wrapTxt && { width: 120, lineHeight: 20 },
           {
             color: txtColor,
             fontSize: 16,
             fontFamily: Fonts.medium,
-            textAlign: "left",
+            textAlign: 'left',
           },
         ]}
       >

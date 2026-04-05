@@ -44,6 +44,8 @@ function Reminders() {
             flexDirection: "row",
             borderRadius: 20,
             overflow: "hidden",
+            backgroundColor: "#F5F5F9",
+            justifyContent: "center",
           }}
         >
           <WheelPicker items={hours} selectedValue={hour} onChange={setHour} />
@@ -60,7 +62,7 @@ function Reminders() {
           />
         </View>
 
-        <View>
+        <View style={{ marginTop: 15 }}>
           <Header
             header="Which day would you like to meditate?"
             info="Everyday is best, but we recommend picking at least five."
