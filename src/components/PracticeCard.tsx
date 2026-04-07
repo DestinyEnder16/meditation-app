@@ -32,13 +32,13 @@ export default function PracticeCard({
   titleColor = Colors.dark,
 }: PracticeCardProps) {
   return (
-    <View style={{ backgroundColor, borderRadius: 10 }}>
+    <View style={[styles.container, { backgroundColor }]}>
       <ImageBackground source={backgroundImg}>
         <View style={styles.card}>
           <View>
             <Text style={[styles.title, { color: titleColor }]}>{title}</Text>
 
-            <View style={{ flexDirection: "row", gap: 10 }}>
+            <View style={styles.infoRow}>
               <Text style={[styles.info, { color: infoColor }]}>{info1}</Text>
               <Text style={{ color: infoColor }}>•</Text>
               <Text style={[styles.info, { color: infoColor }]}>{info2}</Text>
@@ -68,5 +68,12 @@ const styles = StyleSheet.create({
   info: {
     fontSize: 11,
     fontFamily: Fonts.medium,
+  },
+  container: {
+    borderRadius: 10,
+  },
+  infoRow: {
+    flexDirection: "row",
+    gap: 10,
   },
 });

@@ -1,4 +1,4 @@
-import { ImageBackground, ImageSourcePropType } from 'react-native';
+import { ImageBackground, ImageSourcePropType, StyleSheet } from 'react-native';
 import { BackBtn } from '../constants/images';
 import NavStrip from './NavStrip';
 
@@ -13,9 +13,17 @@ export default function SectionHeader({
     <ImageBackground
       resizeMode="cover"
       source={headerBackground}
-      style={{ width: '100%', height: 289, position: 'relative' }}
+      style={styles.background}
     >
       <NavStrip icon={BackBtn} />
     </ImageBackground>
   );
 }
+
+const styles = StyleSheet.create({
+  background: {
+    width: '100%',
+    height: 289,
+    position: 'relative',
+  },
+});

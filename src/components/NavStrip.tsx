@@ -16,7 +16,7 @@ export default function NavStrip({ icon: Icon, color }: navProps) {
         </Pressable>
       </View>
 
-      <View style={{ flexDirection: 'row', gap: 17 }}>
+      <View style={styles.iconRow}>
         <View
           style={[styles.iconContainer, color && { backgroundColor: color }]}
         >
@@ -55,5 +55,9 @@ const styles = StyleSheet.create({
     padding: 15,
     alignSelf: 'flex-start',
     backgroundColor: '#fff',
+  },
+  iconRow: {
+    flexDirection: 'row',
+    gap: 17,
   },
 });

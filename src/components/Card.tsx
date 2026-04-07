@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import { Fonts } from '../constants/fonts';
 import { Colors } from '../constants/themes';
 
@@ -31,15 +31,8 @@ function Card({
     <View
       style={[
         type === 'small' ? { height: 167 } : { height: 210 },
-        {
-          backgroundColor: bgColor,
-          borderRadius: 10,
-          paddingBottom: 10,
-          gap: 15,
-          overflow: 'hidden',
-          paddingHorizontal: 10,
-          justifyContent: 'space-between',
-        },
+        styles.card,
+        { backgroundColor: bgColor },
       ]}
     >
       {Icon && (
@@ -49,13 +42,9 @@ function Card({
       )}
       <Text
         style={[
-          wrapTxt && { width: 120, lineHeight: 20 },
-          {
-            color: txtColor,
-            fontSize: 16,
-            fontFamily: Fonts.medium,
-            textAlign: 'left',
-          },
+          wrapTxt && styles.wrappedText,
+          styles.cardText,
+          { color: txtColor },
         ]}
       >
         {text}
@@ -63,5 +52,25 @@ function Card({
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  card: {
+    borderRadius: 10,
+    paddingBottom: 10,
+    gap: 15,
+    overflow: 'hidden',
+    paddingHorizontal: 10,
+    justifyContent: 'space-between',
+  },
+  cardText: {
+    fontSize: 16,
+    fontFamily: Fonts.medium,
+    textAlign: 'left',
+  },
+  wrappedText: {
+    width: 120,
+    lineHeight: 20,
+  },
+});
 
 export default Card;

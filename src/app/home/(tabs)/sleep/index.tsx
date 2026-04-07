@@ -6,7 +6,7 @@ import { Colors } from '@/src/constants/themes';
 import { useScreenInfo } from '@/src/contexts/screenContext';
 import { Redirect, router } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
-import { ImageBackground, Pressable, View } from 'react-native';
+import { ImageBackground, Pressable, StyleSheet, View } from 'react-native';
 
 function SleepHeader() {
   return (
@@ -14,7 +14,7 @@ function SleepHeader() {
       <ImageBackground
         source={require('@/assets/images/sleep-background.png')}
         resizeMode="cover"
-        style={{ paddingTop: 40, gap: 40 }}
+        style={styles.headerBackground}
       >
         <View style={{ marginTop: 30 }}>
           <Header
@@ -30,7 +30,7 @@ function SleepHeader() {
       </ImageBackground>
 
       <Pressable
-        style={{ alignItems: 'center', marginVertical: 30 }}
+        style={styles.overviewCard}
         onPress={() => router.navigate('/home/(tabs)/sleep/sleep-music-list')}
       >
         <SleepOverViewCard />
@@ -54,3 +54,14 @@ export default function Sleep() {
     <Redirect href={{ pathname: '/home/sleep-welcome' }} />
   );
 }
+
+const styles = StyleSheet.create({
+  headerBackground: {
+    paddingTop: 40,
+    gap: 40,
+  },
+  overviewCard: {
+    alignItems: 'center',
+    marginVertical: 30,
+  },
+});

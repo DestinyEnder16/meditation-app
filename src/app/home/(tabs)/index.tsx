@@ -25,15 +25,15 @@ export default function Home() {
         <Logo />
       </View>
 
-      <View style={{ marginTop: 30, alignSelf: 'flex-start' }}>
+      <View style={styles.headerContainer}>
         <Header
           header={`Good ${greeting}, ${name}`}
           info="We wish you have a good day"
         />
       </View>
 
-      <View style={{ gap: 20, marginTop: 30 }}>
-        <View style={{ flexDirection: 'row', gap: 20 }}>
+      <View style={styles.coursesSection}>
+        <View style={styles.courseCardsRow}>
           <CourseCard
             title="Basics"
             description="COURSE"
@@ -73,7 +73,7 @@ export default function Home() {
       <ScrollView
         horizontal
         showsHorizontalScrollIndicator={false}
-        contentContainerStyle={{ flexDirection: 'row', gap: 20 }}
+        contentContainerStyle={styles.courseCardsRow}
       >
         <RecommendationCard
           icon={<FocusIcon />}
@@ -101,6 +101,18 @@ export default function Home() {
 }
 
 const styles = StyleSheet.create({
+  headerContainer: {
+    marginTop: 30,
+    alignSelf: 'flex-start',
+  },
+  coursesSection: {
+    gap: 20,
+    marginTop: 30,
+  },
+  courseCardsRow: {
+    flexDirection: 'row',
+    gap: 20,
+  },
   header: {
     fontSize: 24,
     alignSelf: 'flex-start',

@@ -41,12 +41,12 @@ export default function MusicCard({
     <Pressable onPress={() => handlePress()}>
       {/* <Icon /> */}
       <View>
-        <Image source={image} style={{ height: 123, width: 177 }} />
+        <Image source={image} style={styles.image} />
       </View>
 
       <View>
         <Text style={styles.title}>{title}</Text>
-        <View style={{ flexDirection: 'row', gap: 10 }}>
+        <View style={styles.infoRow}>
           <Text style={styles.info}>{duration}</Text>
           <Text style={styles.info}>•</Text>
           <Text style={styles.info}>{type}</Text>
@@ -66,5 +66,13 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.medium,
     fontSize: 11,
     color: '#98A1BD',
+  },
+  image: {
+    height: 123,
+    width: 177,
+  },
+  infoRow: {
+    flexDirection: 'row',
+    gap: 10,
   },
 });

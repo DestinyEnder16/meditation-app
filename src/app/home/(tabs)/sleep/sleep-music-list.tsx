@@ -9,15 +9,7 @@ import { FlatList, Pressable, StyleSheet, Text, View } from 'react-native';
 
 function Header() {
   return (
-    <View
-      style={{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        width: '100%',
-        alignItems: 'center',
-        marginTop: 20,
-      }}
-    >
+    <View style={styles.headerRow}>
       <Pressable style={styles.btn} onPress={() => router.back()}>
         <BackBtn />
       </Pressable>
@@ -32,7 +24,7 @@ function Header() {
 export default function SleepMusicList() {
   return (
     <>
-      <View style={{ backgroundColor: Colors.sleepPrimaryTheme, flex: 1 }}>
+      <View style={styles.screenContainer}>
         <ContainerView addSafeArea transparent>
           <Tabs.Screen
             options={{
@@ -73,6 +65,17 @@ export default function SleepMusicList() {
 }
 
 const styles = StyleSheet.create({
+  screenContainer: {
+    backgroundColor: Colors.sleepPrimaryTheme,
+    flex: 1,
+  },
+  headerRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    width: '100%',
+    alignItems: 'center',
+    marginTop: 20,
+  },
   txt: {
     fontFamily: Fonts.bold,
     fontSize: 24,

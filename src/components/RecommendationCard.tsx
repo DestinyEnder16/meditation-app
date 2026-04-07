@@ -20,16 +20,12 @@ export default function RecommendationCard({
   return (
     <View>
       <View
-        style={{
-          backgroundColor: backgroundColor ?? "",
-          borderRadius: 16,
-          overflow: "hidden",
-        }}
+        style={[styles.iconContainer, { backgroundColor: backgroundColor ?? "" }]}
       >
         {icon}
       </View>
       <Text style={styles.title}>{title}</Text>
-      <View style={{ flexDirection: "row", gap: 5 }}>
+      <View style={styles.infoRow}>
         <Text style={styles.txt}>{description}</Text>
         <Text style={styles.txt}>{duration}</Text>
       </View>
@@ -48,5 +44,13 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.medium,
     color: Colors.gray,
     fontSize: 12,
+  },
+  iconContainer: {
+    borderRadius: 16,
+    overflow: "hidden",
+  },
+  infoRow: {
+    flexDirection: "row",
+    gap: 5,
   },
 });

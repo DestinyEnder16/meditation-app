@@ -25,7 +25,7 @@ export default function SleepMusicDetails() {
     <>
       <SectionHeader headerBackground={sleepMusicData[+activeTab]['image']} />
       <View style={{ justifyContent: 'center' }}>
-        <View style={{ marginTop: 25, paddingHorizontal: 25 }}>
+        <View style={styles.content}>
           <SectionInfo
             header={title}
             info={`${duration} • ${info}`}
@@ -50,9 +50,9 @@ export default function SleepMusicDetails() {
     </>
   );
   return (
-    <View style={{ flex: 1, backgroundColor: '#03174C', paddingBottom: 50 }}>
+    <View style={styles.screenContainer}>
       <MusicList ListHeaderComponent={ListHeader} data={filteredData} />
-      <View style={{ position: 'absolute', bottom: 30, left: 10, right: 10 }}>
+      <View style={styles.playBtnContainer}>
         <Btn
           text="Play"
           txtColor={Colors.white}
@@ -72,6 +72,21 @@ export default function SleepMusicDetails() {
 }
 
 const styles = StyleSheet.create({
+  screenContainer: {
+    flex: 1,
+    backgroundColor: '#03174C',
+    paddingBottom: 50,
+  },
+  content: {
+    marginTop: 25,
+    paddingHorizontal: 25,
+  },
+  playBtnContainer: {
+    position: 'absolute',
+    bottom: 30,
+    left: 10,
+    right: 10,
+  },
   txt: {
     fontFamily: Fonts.bold,
     fontSize: 24,

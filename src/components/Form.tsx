@@ -157,10 +157,8 @@ const RegistrationForm: React.FC<formProps> = ({ type }) => {
 
       {type === "signup" && (
         <View>
-          <View
-            style={{ flexDirection: "row", justifyContent: "space-between" }}
-          >
-            <Text style={{ fontFamily: Fonts.medium, color: "#aaa" }}>
+          <View style={styles.privacyRow}>
+            <Text style={styles.privacyText}>
               I have read the{" "}
               <Text style={{ color: Colors.secondary }}>Privacy Policy</Text>
             </Text>
@@ -196,7 +194,7 @@ const RegistrationForm: React.FC<formProps> = ({ type }) => {
       </View>
 
       {type === "login" && (
-        <Text style={{ alignSelf: "center", fontFamily: Fonts.medium }}>
+        <Text style={styles.forgotPassword}>
           Forgot Password?
         </Text>
       )}
@@ -229,6 +227,18 @@ const styles = StyleSheet.create({
   },
   eyeBtn: {
     paddingHorizontal: 15,
+  },
+  privacyRow: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  privacyText: {
+    fontFamily: Fonts.medium,
+    color: "#aaa",
+  },
+  forgotPassword: {
+    alignSelf: "center",
+    fontFamily: Fonts.medium,
   },
 });
 

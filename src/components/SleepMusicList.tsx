@@ -1,4 +1,4 @@
-import { FlatList, ViewStyle } from 'react-native';
+import { FlatList, StyleSheet, ViewStyle } from 'react-native';
 import { sleepMusicData } from '../constants/data';
 import MusicCard from './SleepMusicCard';
 
@@ -21,23 +21,13 @@ export default function MusicList({
     <FlatList
       data={data ? data : sleepMusicData}
       style={[style]}
-      contentContainerStyle={[
-        { gap: 10, paddingBottom: 50 },
-        contentContainerStyle,
-      ]}
+      contentContainerStyle={[styles.contentContainer, contentContainerStyle]}
       numColumns={2}
-      columnWrapperStyle={{ gap: 15, paddingHorizontal: 25, marginTop: 10 }}
+      columnWrapperStyle={styles.columnWrapper}
       keyExtractor={(item) => String(item.index)}
       ListHeaderComponent={ListHeaderComponent}
       ListFooterComponent={ListFooterComponent}
-      ListFooterComponentStyle={
-        ListFooterComponent && {
-          paddingHorizontal: 25,
-          position: 'fixed',
-          marginTop: 10,
-          bottom: 0,
-        }
-      }
+      ListFooterComponentStyle={ListFooterComponent && styles.footer}
       renderItem={({ item, index }) => (
         <MusicCard
           image={item.image}
@@ -50,3 +40,21 @@ export default function MusicList({
     />
   );
 }
+
+const styles = StyleSheet.create({
+  contentContainer: {
+    gap: 10,
+    paddingBottom: 50,
+  },
+  columnWrapper: {
+    gap: 15,
+    paddingHorizontal: 25,
+    marginTop: 10,
+  },
+  footer: {
+    paddingHorizontal: 25,
+    position: 'fixed' as any,
+    marginTop: 10,
+    bottom: 0,
+  },
+});

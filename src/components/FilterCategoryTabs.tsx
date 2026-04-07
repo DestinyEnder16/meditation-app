@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ScrollView } from 'react-native';
+import { ScrollView, StyleSheet } from 'react-native';
 import {
   CategoryTabAll,
   CategoryTabEmotion,
@@ -25,10 +25,7 @@ export default function FilterCategoryTabs({
     <ScrollView
       horizontal
       showsHorizontalScrollIndicator={false}
-      contentContainerStyle={{
-        gap: 20,
-        paddingLeft: 24,
-      }}
+      contentContainerStyle={styles.contentContainer}
       // to ensure the scroll view doesn't grow beyond its content
       style={{ flexGrow: 0 }}
     >
@@ -80,3 +77,10 @@ export default function FilterCategoryTabs({
     </ScrollView>
   );
 }
+
+const styles = StyleSheet.create({
+  contentContainer: {
+    gap: 20,
+    paddingLeft: 24,
+  },
+});

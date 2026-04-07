@@ -21,18 +21,8 @@ export default function Welcome() {
         source={require('@/assets/images/sleep-background-v1.png')}
         style={{ backgroundColor: Colors.sleepPrimaryTheme }}
       >
-        <View
-          style={{
-            height: '100%',
-            justifyContent: 'space-between',
-            paddingBottom: 50,
-            paddingTop: 180,
-            paddingHorizontal: 25,
-          }}
-        >
-          <View
-            style={{ alignItems: 'center', gap: 10, paddingHorizontal: 25 }}
-          >
+        <View style={styles.container}>
+          <View style={styles.textSection}>
             <Text style={styles.header}>Welcome to Sleep</Text>
             <Text style={styles.info}>
               Explore the new king of sleep. It uses sound and visualization to
@@ -54,6 +44,18 @@ export default function Welcome() {
 }
 
 const styles = StyleSheet.create({
+  container: {
+    height: '100%',
+    justifyContent: 'space-between',
+    paddingBottom: 50,
+    paddingTop: 180,
+    paddingHorizontal: 25,
+  },
+  textSection: {
+    alignItems: 'center',
+    gap: 10,
+    paddingHorizontal: 25,
+  },
   header: {
     color: '#E6E7F2',
     fontFamily: Fonts.bold,

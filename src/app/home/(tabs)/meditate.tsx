@@ -10,7 +10,7 @@ import {
   MeditateFeature4,
 } from '@/src/constants/images';
 import { Colors } from '@/src/constants/themes';
-import { ScrollView, View } from 'react-native';
+import { ScrollView, StyleSheet, View } from 'react-native';
 
 export default function Meditate() {
   return (
@@ -46,13 +46,7 @@ export default function Meditate() {
 
           <ScrollView
             showsVerticalScrollIndicator={false}
-            contentContainerStyle={{
-              flexDirection: 'row',
-              gap: 15,
-              marginTop: 30,
-              marginBottom: 100,
-              flexGrow: 1,
-            }}
+            contentContainerStyle={styles.featureGrid}
           >
             <View style={{ gap: 25 }}>
               <FeatureCard text="7 Days of Calm" icon={<MeditateFeature1 />} />
@@ -78,3 +72,13 @@ export default function Meditate() {
     </ContainerView>
   );
 }
+
+const styles = StyleSheet.create({
+  featureGrid: {
+    flexDirection: 'row',
+    gap: 15,
+    marginTop: 30,
+    marginBottom: 100,
+    flexGrow: 1,
+  },
+});

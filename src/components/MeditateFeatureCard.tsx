@@ -15,20 +15,12 @@ export default function FeatureCard({
   txtColor = Colors.white,
 }: cardProps) {
   return (
-    <View
-      style={{ position: 'relative', borderRadius: 16, overflow: 'hidden' }}
-    >
+    <View style={styles.container}>
       {icon}
       <BlurView
         intensity={40}
         tint="dark"
-        style={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          padding: 12,
-        }}
+        style={styles.blurOverlay}
       >
         <Text style={[styles.txt, { color: txtColor }]}>{text}</Text>
       </BlurView>
@@ -37,6 +29,18 @@ export default function FeatureCard({
 }
 
 const styles = StyleSheet.create({
+  container: {
+    position: 'relative',
+    borderRadius: 16,
+    overflow: 'hidden',
+  },
+  blurOverlay: {
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    padding: 12,
+  },
   txt: {
     fontFamily: Fonts.bold,
     fontSize: 18,

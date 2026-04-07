@@ -33,21 +33,13 @@ export default function CourseCard({
   const router = useRouter();
 
   return (
-    <View
-      style={{
-        backgroundColor: bgColor,
-        borderRadius: 10,
-        width: 177,
-        height: 210,
-        justifyContent: 'space-between',
-      }}
-    >
+    <View style={[styles.container, { backgroundColor: bgColor }]}>
       <View>
         <View style={{ alignSelf: 'flex-end' }}>
           <Image />
         </View>
 
-        <View style={{ paddingHorizontal: 12, gap: 30 }}>
+        <View style={styles.cardContent}>
           <View>
             <Text style={[styles.title, txtColor && { color: txtColor }]}>
               {title}
@@ -57,13 +49,7 @@ export default function CourseCard({
             </Text>
           </View>
 
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-between',
-              alignItems: 'center',
-            }}
-          >
+          <View style={styles.footer}>
             <Text
               style={[styles.details, detailsColor && { color: detailsColor }]}
             >
@@ -80,6 +66,21 @@ export default function CourseCard({
 }
 
 const styles = StyleSheet.create({
+  container: {
+    borderRadius: 10,
+    width: 177,
+    height: 210,
+    justifyContent: 'space-between',
+  },
+  cardContent: {
+    paddingHorizontal: 12,
+    gap: 30,
+  },
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
   title: {
     fontSize: 18,
     fontFamily: Fonts.bold,

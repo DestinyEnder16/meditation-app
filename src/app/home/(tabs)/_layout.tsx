@@ -20,11 +20,10 @@ function TabIcon({
 }) {
   return (
     <View
-      style={{
-        backgroundColor: focused ? Colors.primary : 'transparent',
-        borderRadius: 16,
-        padding: 13,
-      }}
+      style={[
+        styles.tabIcon,
+        { backgroundColor: focused ? Colors.primary : 'transparent' },
+      ]}
     >
       {children}
     </View>
@@ -120,6 +119,10 @@ export default function TabLayout() {
 }
 
 const styles = StyleSheet.create({
+  tabIcon: {
+    borderRadius: 16,
+    padding: 13,
+  },
   icon: { marginTop: 15 },
   label: { marginTop: 10, fontFamily: Fonts.medium, fontSize: 12 },
 });

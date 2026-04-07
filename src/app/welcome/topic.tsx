@@ -6,7 +6,7 @@ import { topicData } from "@/src/constants/data";
 import { Colors } from "@/src/constants/themes";
 import { router } from "expo-router";
 import { useState } from "react";
-import { Pressable, ScrollView, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, View } from "react-native";
 
 export default function Home() {
   const [selectedTopics, setSelectedTopics] = useState<number[]>([]);
@@ -25,24 +25,14 @@ export default function Home() {
     <ContainerView addSafeArea usePadding={false}>
       <ScrollView
         showsVerticalScrollIndicator={false}
-        style={{
-          paddingTop: 40,
-          alignSelf: "stretch",
-          paddingHorizontal: 20,
-        }}
-        contentContainerStyle={{ paddingBottom: 50 }}
+        style={styles.scrollView}
+        contentContainerStyle={styles.scrollViewContent}
       >
-        <View
-          style={{
-            flexDirection: "row",
-            gap: 40,
-            justifyContent: "space-between",
-          }}
-        >
+        <View style={styles.topicHeaderRow}>
           <TopicHeader />
 
           {selectedTopics.length > 0 && (
-            <View style={{ flex: 1, alignSelf: "center" }}>
+            <View style={styles.nextBtnContainer}>
               <Btn
                 styles={{
                   paddingVertical: 10,
@@ -56,22 +46,22 @@ export default function Home() {
           )}
         </View>
 
-        <View style={{ flexDirection: "row", gap: 10 }}>
-          <View style={{ flex: 1, gap: 20 }}>
+        <View style={styles.columnsContainer}>
+          <View style={styles.column}>
             {topicData
               .filter((_, i) => i % 2 === 0)
               .map((item) => (
                 <Pressable
                   key={item.id}
                   onPress={() => handleSelectTopic(item.id)}
-                  style={{
-                    borderWidth: 2,
-                    borderColor: selectedTopics.includes(item.id)
-                      ? item.bgColor
-                      : "transparent",
-                    borderRadius: 12,
-                    padding: 3,
-                  }}
+                  style={[
+                    styles.topicPressable,
+                    {
+                      borderColor: selectedTopics.includes(item.id)
+                        ? item.bgColor
+                        : "transparent",
+                    },
+                  ]}
                 >
                   <Card
                     icon={item.icon}
@@ -84,21 +74,21 @@ export default function Home() {
                 </Pressable>
               ))}
           </View>
-          <View style={{ flex: 1, gap: 20 }}>
+          <View style={styles.column}>
             {topicData
               .filter((_, i) => i % 2 !== 0)
               .map((item) => (
                 <Pressable
                   key={item.id}
                   onPress={() => handleSelectTopic(item.id)}
-                  style={{
-                    borderWidth: 2,
-                    borderColor: selectedTopics.includes(item.id)
-                      ? item.bgColor
-                      : "transparent",
-                    borderRadius: 12,
-                    padding: 3,
-                  }}
+                  style={[
+                    styles.topicPressable,
+                    {
+                      borderColor: selectedTopics.includes(item.id)
+                        ? item.bgColor
+                        : "transparent",
+                    },
+                  ]}
                 >
                   <Card
                     key={item.text}
@@ -117,3 +107,36 @@ export default function Home() {
     </ContainerView>
   );
 }
+
+const styles = StyleSheet.create({
+  scrollView: {
+    paddingTop: 40,
+    alignSelf: "stretch",
+    paddingHorizontal: 20,
+  },
+  scrollViewContent: {
+    paddingBottom: 50,
+  },
+  topicHeaderRow: {
+    flexDirection: "row",
+    gap: 40,
+    justifyContent: "space-between",
+  },
+  nextBtnContainer: {
+    flex: 1,
+    alignSelf: "center",
+  },
+  columnsContainer: {
+    flexDirection: "row",
+    gap: 10,
+  },
+  column: {
+    flex: 1,
+    gap: 20,
+  },
+  topicPressable: {
+    borderWidth: 2,
+    borderRadius: 12,
+    padding: 3,
+  },
+});

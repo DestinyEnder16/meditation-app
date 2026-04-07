@@ -2,7 +2,7 @@ import MusicPlayer from '@/src/components/MusicPlayer';
 import NavStrip from '@/src/components/NavStrip';
 import { XIcon } from '@/src/constants/images';
 import { useLocalSearchParams } from 'expo-router';
-import { ImageBackground, View } from 'react-native';
+import { ImageBackground, StyleSheet, View } from 'react-native';
 
 export default function MusicDetails() {
   const { title, useDark } = useLocalSearchParams();
@@ -18,12 +18,7 @@ export default function MusicDetails() {
     >
       <View
         style={[
-          {
-            height: '100%',
-            alignItems: 'center',
-            justifyContent: 'flex-end',
-            paddingBottom: 200,
-          },
+          styles.content,
           useDark === 'yes' && { backgroundColor: '#03164ced' },
         ]}
       >
@@ -41,3 +36,12 @@ export default function MusicDetails() {
     </ImageBackground>
   );
 }
+
+const styles = StyleSheet.create({
+  content: {
+    height: '100%',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+    paddingBottom: 200,
+  },
+});

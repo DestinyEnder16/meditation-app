@@ -16,7 +16,7 @@ export default function CourseDetails() {
       <SectionHeader
         headerBackground={require("@/assets/images/sleep__section-header.png")}
       />
-      <View style={{ marginTop: 25, paddingHorizontal: 25 }}>
+      <View style={styles.content}>
         <SectionInfo
           header={`Happy ${greeting}`}
           info="COURSE"
@@ -42,6 +42,10 @@ export default function CourseDetails() {
 }
 
 const styles = StyleSheet.create({
+  content: {
+    marginTop: 25,
+    paddingHorizontal: 25,
+  },
   text: {
     fontFamily: Fonts.bold,
     color: Colors.dark,

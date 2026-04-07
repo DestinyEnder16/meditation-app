@@ -1,19 +1,38 @@
-import { Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { Fonts } from "../constants/fonts";
 
 export default function TopicHeader() {
   return (
-    <View style={{ alignSelf: "flex-start", marginBottom: 20 }}>
-      <Text style={{ fontFamily: Fonts.medium, fontSize: 28 }}>
+    <View style={styles.container}>
+      <Text style={styles.heading}>
         What Brings you
       </Text>
-      <Text style={{ fontFamily: Fonts.thin, fontSize: 28 }}>
+      <Text style={styles.subheading}>
         to Silent Moon
       </Text>
 
-      <Text style={{ fontFamily: Fonts.thin, fontSize: 20 }}>
+      <Text style={styles.caption}>
         choose a topic to focus on:
       </Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    alignSelf: "flex-start",
+    marginBottom: 20,
+  },
+  heading: {
+    fontFamily: Fonts.medium,
+    fontSize: 28,
+  },
+  subheading: {
+    fontFamily: Fonts.thin,
+    fontSize: 28,
+  },
+  caption: {
+    fontFamily: Fonts.thin,
+    fontSize: 20,
+  },
+});

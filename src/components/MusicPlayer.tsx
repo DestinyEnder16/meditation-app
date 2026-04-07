@@ -28,7 +28,7 @@ export default function MusicPlayer({
 }: MusicPlayerProps) {
   const [isActive, setIsActive] = useState(true);
   return (
-    <View style={{ gap: 10, alignItems: 'center' }}>
+    <View style={styles.container}>
       <Text style={[styles.header, useDarkTheme && { color: Colors.white }]}>
         {title}
       </Text>
@@ -51,15 +51,10 @@ export default function MusicPlayer({
           )}
         </View>
 
-        <View style={{ gap: 10, justifyContent: 'center' }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <View style={styles.progressSection}>
+          <View style={styles.progressBar}>
             {!useDarkTheme ? (
-              <View
-                style={{
-                  flexDirection: 'row',
-                  alignItems: 'center',
-                }}
-              >
+              <View style={styles.progressBar}>
                 <Line1 />
                 <Ellipse />
                 <Line2 />
@@ -70,9 +65,7 @@ export default function MusicPlayer({
               </>
             )}
           </View>
-          <View
-            style={{ flexDirection: 'row', justifyContent: 'space-between' }}
-          >
+          <View style={styles.timeRow}>
             <Text style={[styles.txt, useDarkTheme && { color: Colors.milk }]}>
               01:30
             </Text>
@@ -87,6 +80,22 @@ export default function MusicPlayer({
 }
 
 const styles = StyleSheet.create({
+  container: {
+    gap: 10,
+    alignItems: 'center',
+  },
+  progressSection: {
+    gap: 10,
+    justifyContent: 'center',
+  },
+  progressBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  timeRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
   header: {
     fontFamily: Fonts.bold,
     fontSize: 34,
