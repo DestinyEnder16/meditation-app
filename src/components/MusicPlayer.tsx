@@ -54,11 +54,16 @@ export default function MusicPlayer({
         <View style={{ gap: 10, justifyContent: 'center' }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
             {!useDarkTheme ? (
-              <>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                }}
+              >
                 <Line1 />
                 <Ellipse />
                 <Line2 />
-              </>
+              </View>
             ) : (
               <>
                 <DarkThemeProgressBar />

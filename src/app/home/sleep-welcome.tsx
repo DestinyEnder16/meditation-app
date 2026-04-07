@@ -44,7 +44,7 @@ export default function Welcome() {
             txtColor="#F6F1FB"
             onPress={() => {
               setIsWelcomed(true);
-              router.replace('/home/sleep');
+              router.replace('/home/(tabs)/sleep');
             }}
           />
         </View>
