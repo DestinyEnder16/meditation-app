@@ -1,9 +1,12 @@
-import { Text, View } from "react-native";
+import ContainerView from '@/src/components/ContainerView';
+import { Text, View } from 'react-native';
 
 export default function Profile() {
   return (
-    <View>
-      <Text>Hello world</Text>
-    </View>
+    <ContainerView addSafeArea>
+      <View>
+        <Text>Hello World</Text>
+      </View>
+    </ContainerView>
   );
 }

@@ -1,7 +1,6 @@
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import { Colors } from "../constants/themes";
-import { useState } from "react";
-import { Fonts } from "../constants/fonts";
+import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Fonts } from '../constants/fonts';
+import { Colors } from '../constants/themes';
 
 type CategoryTabProps = {
   title: string;
@@ -10,6 +9,7 @@ type CategoryTabProps = {
   activeColor: string;
   activeTab: string;
   setActiveTab: (tab: string) => void;
+  activeTxtColor?: string;
 };
 
 export default function CategoryTab({
@@ -17,6 +17,7 @@ export default function CategoryTab({
   icon,
   bgColor,
   activeColor,
+  activeTxtColor,
   activeTab,
   setActiveTab,
 }: CategoryTabProps) {
@@ -26,14 +27,19 @@ export default function CategoryTab({
       <View
         style={[
           {
-            backgroundColor: !isActive ? (bgColor ?? Colors.gray) : activeColor,
+            backgroundColor: !isActive ? bgColor ?? Colors.gray : activeColor,
           },
           styles.icon,
         ]}
       >
         {icon}
       </View>
-      <Text style={[styles.txt, isActive && { color: Colors.dark }]}>
+      <Text
+        style={[
+          styles.txt,
+          isActive && { color: activeTxtColor ?? Colors.dark },
+        ]}
+      >
         {title}
       </Text>
     </Pressable>
@@ -43,7 +49,7 @@ export default function CategoryTab({
 const styles = StyleSheet.create({
   tab: {
     gap: 8,
-    alignItems: "center",
+    alignItems: 'center',
     width: 65,
   },
   icon: {

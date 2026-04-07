@@ -1,5 +1,9 @@
 import { Fonts } from '@/src/constants/fonts';
 import {
+  DarkThemeForwardBtn,
+  DarkThemePauseBtn,
+  DarkThemeProgressBar,
+  DarkThemeRewindBtn,
   Ellipse,
   ForwardBtn,
   Line1,
@@ -14,33 +18,62 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 interface MusicPlayerProps {
   title: string;
   subtitle: string;
+  useDarkTheme?: boolean;
 }
 
-export default function MusicPlayer({ title, subtitle }: MusicPlayerProps) {
+export default function MusicPlayer({
+  title,
+  subtitle,
+  useDarkTheme = false,
+}: MusicPlayerProps) {
   const [isActive, setIsActive] = useState(true);
   return (
     <View style={{ gap: 10, alignItems: 'center' }}>
-      <Text style={styles.header}>{title}</Text>
+      <Text style={[styles.header, useDarkTheme && { color: Colors.white }]}>
+        {title}
+      </Text>
       <Text style={styles.desc}>{subtitle}</Text>
 
       <View style={{ gap: 50 }}>
         <View style={styles.musicPlayer}>
-          <RewindBtn />
-          <Pressable>{isActive && <PauseBtn />}</Pressable>
-          <ForwardBtn />
+          {!useDarkTheme ? (
+            <>
+              <RewindBtn />
+              <Pressable>{isActive && <PauseBtn />}</Pressable>
+              <ForwardBtn />
+            </>
+          ) : (
+            <>
+              <DarkThemeRewindBtn />
+              <Pressable>{isActive && <DarkThemePauseBtn />}</Pressable>
+              <DarkThemeForwardBtn />
+            </>
+          )}
         </View>
 
         <View style={{ gap: 10, justifyContent: 'center' }}>
           <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-            <Line1 />
-            <Ellipse />
-            <Line2 />
+            {!useDarkTheme ? (
+              <>
+                <Line1 />
+                <Ellipse />
+                <Line2 />
+              </>
+            ) : (
+              <>
+                <DarkThemeProgressBar />
+              </>
+            )}
           </View>
           <View
             style={{ flexDirection: 'row', justifyContent: 'space-between' }}
           >
-            <Text style={styles.txt}>01:30</Text>
-            <Text style={styles.txt}>45:00</Text>
+            <Text style={[styles.txt, useDarkTheme && { color: Colors.milk }]}>
+              01:30
+            </Text>
+            <Text style={[styles.txt, useDarkTheme && { color: Colors.milk }]}>
+              45:00
+            </Text>
           </View>
         </View>
       </View>

@@ -1,15 +1,15 @@
-import { Tabs } from "expo-router";
-import { StyleSheet, View } from "react-native";
+import { Fonts } from '@/src/constants/fonts';
+import { Colors } from '@/src/constants/themes';
+import { Tabs } from 'expo-router';
+import { StyleSheet, View } from 'react-native';
 import {
   HomeIcon,
   MeditateIcon,
   MusicIcon,
   ProfileIcon,
   SleepIcon,
-} from "../../../constants/images";
-import { useUser } from "../../../contexts/userContext";
-import { Colors } from "@/src/constants/themes";
-import { Fonts } from "@/src/constants/fonts";
+} from '../../../constants/images';
+import { useUser } from '../../../contexts/userContext';
 
 function TabIcon({
   children,
@@ -21,7 +21,7 @@ function TabIcon({
   return (
     <View
       style={{
-        backgroundColor: focused ? Colors.primary : "transparent",
+        backgroundColor: focused ? Colors.primary : 'transparent',
         borderRadius: 16,
         padding: 13,
       }}
@@ -47,7 +47,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: 'Home',
           tabBarIconStyle: styles.icon,
           tabBarLabelStyle: styles.label,
           tabBarIcon: ({ color, focused }) => (
@@ -60,9 +60,15 @@ export default function TabLayout() {
       <Tabs.Screen
         name="sleep"
         options={{
-          title: "Sleep",
+          title: 'Sleep',
           tabBarIconStyle: styles.icon,
           tabBarLabelStyle: styles.label,
+          tabBarStyle: {
+            height: 90,
+            backgroundColor: Colors.sleepPrimaryTheme,
+            borderColor: Colors.sleepPrimaryTheme,
+          },
+          tabBarActiveTintColor: Colors.white,
           tabBarIcon: ({ color, focused }) => (
             <TabIcon focused={focused}>
               <SleepIcon color={!focused ? color : Colors.white} />
@@ -73,7 +79,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="meditate"
         options={{
-          title: "Meditate",
+          title: 'Meditate',
           tabBarIconStyle: styles.icon,
           tabBarLabelStyle: styles.label,
           tabBarIcon: ({ color, focused }) => (
@@ -88,7 +94,7 @@ export default function TabLayout() {
         options={{
           tabBarIconStyle: styles.icon,
           tabBarLabelStyle: styles.label,
-          title: "Music",
+          title: 'Music',
           tabBarIcon: ({ color, focused }) => (
             <TabIcon focused={focused}>
               <MusicIcon color={!focused ? color : Colors.white} />
@@ -99,7 +105,7 @@ export default function TabLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: name || "Profile",
+          title: name || 'Profile',
           tabBarIconStyle: styles.icon,
           tabBarLabelStyle: styles.label,
           tabBarIcon: ({ color, focused }) => (

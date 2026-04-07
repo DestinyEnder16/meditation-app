@@ -36,6 +36,7 @@ import ProfileIcon from '@/assets/images/profile-icon.svg';
 import PurplePlayBtn from '@/assets/images/purple-play-btn.svg';
 import RelaxationCard from '@/assets/images/relaxation-card.svg';
 import RewindBtn from '@/assets/images/rewind--btn.svg';
+import SleepOverViewCard from '@/assets/images/sleep-course-overview.svg';
 import SleepIcon from '@/assets/images/sleep-moon.svg';
 import SleepLogo from '@/assets/images/sleep.svg';
 import SleepHeader from '@/assets/images/sleep__section-header.svg';
@@ -53,6 +54,16 @@ import WelcomeLogo from '@/assets/images/welcome-logo.svg';
 import WhitePlayBtn from '@/assets/images/white-play-btn.svg';
 import XIcon from '@/assets/images/x.svg';
 
+import SleepCourse1 from '@/assets/images/sleep-music1.svg';
+import SleepCourse2 from '@/assets/images/sleep-music2.svg';
+import SleepCourse3 from '@/assets/images/sleep-music3.svg';
+import SleepCourse4 from '@/assets/images/sleep-music4.svg';
+
+import DarkThemeForwardBtn from '@/assets/images/dark-fast-forward-btn.svg';
+import DarkThemeRewindBtn from '@/assets/images/dark-rewind-btn.svg';
+import DarkThemeProgressBar from '@/assets/images/dark-theme-musicSeeker.svg';
+import DarkThemePauseBtn from '@/assets/images/dark-theme-pause-btn.svg';
+
 export {
   AnxietyLogo,
   BackBtn,
@@ -65,6 +76,10 @@ export {
   Checkmark,
   CourseCard,
   DarkPlayBtn,
+  DarkThemeForwardBtn,
+  DarkThemePauseBtn,
+  DarkThemeProgressBar,
+  DarkThemeRewindBtn,
   DownloadIcon,
   Ellipse,
   EyeClosed,
@@ -97,9 +112,14 @@ export {
   RelaxationCard,
   RelaxationCourse,
   RewindBtn,
+  SleepCourse1,
+  SleepCourse2,
+  SleepCourse3,
+  SleepCourse4,
   SleepHeader,
   SleepIcon,
   SleepLogo,
+  SleepOverViewCard,
   StartBtnDark,
   StartBtnWhite,
   StressIcon,

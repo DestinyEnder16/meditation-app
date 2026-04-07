@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View } from "react-native";
-import { Fonts } from "../constants/fonts";
-import { Colors } from "../constants/themes";
+import { StyleSheet, Text, View } from 'react-native';
+import { Fonts } from '../constants/fonts';
+import { Colors } from '../constants/themes';
 
 type headerProps = {
   header: string;
@@ -8,6 +8,8 @@ type headerProps = {
   alignCenter?: boolean;
   headerFontSize?: number;
   infoFontSize?: number;
+  headerColor?: string;
+  infoColor?: string;
 };
 
 function Header({
@@ -16,14 +18,17 @@ function Header({
   alignCenter,
   headerFontSize,
   infoFontSize,
+  headerColor,
+  infoColor,
 }: headerProps) {
   return (
     <View style={{ gap: 10 }}>
       <Text
         style={[
           styles.header,
-          { textAlign: alignCenter ? "center" : "left" },
+          { textAlign: alignCenter ? 'center' : 'left' },
           headerFontSize ? { fontSize: headerFontSize } : null,
+          headerColor && { color: headerColor },
         ]}
       >
         {header}
@@ -31,8 +36,9 @@ function Header({
       <Text
         style={[
           styles.info,
-          { textAlign: alignCenter ? "center" : "left" },
+          { textAlign: alignCenter ? 'center' : 'left' },
           infoFontSize ? { fontSize: infoFontSize } : null,
+          infoColor && { color: infoColor },
         ]}
       >
         {info}
@@ -52,7 +58,7 @@ const styles = StyleSheet.create({
     fontFamily: Fonts.thin,
     fontSize: 20,
     lineHeight: 25,
-    textAlign: "left",
+    textAlign: 'left',
     color: Colors.gray,
   },
 });

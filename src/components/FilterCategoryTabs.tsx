@@ -1,17 +1,25 @@
-import { ScrollView, Text, View } from "react-native";
-import CategoryTab from "./CategoryTab";
+import { useState } from 'react';
+import { ScrollView } from 'react-native';
 import {
   CategoryTabAll,
   CategoryTabEmotion,
   CategoryTabFavorite,
   CategoryTabKids,
   CategoryTabSleep,
-} from "../constants/images";
-import { Colors } from "../constants/themes";
-import { useState } from "react";
+} from '../constants/images';
+import { Colors } from '../constants/themes';
+import CategoryTab from './CategoryTab';
 
-export default function FilterCategoryTabs() {
-  const [activeTab, setActiveTab] = useState("All");
+interface tabProps {
+  bgColor?: string;
+  activeTxtColor?: string;
+}
+
+export default function FilterCategoryTabs({
+  bgColor = Colors.gray,
+  activeTxtColor,
+}: tabProps) {
+  const [activeTab, setActiveTab] = useState('All');
 
   return (
     <ScrollView
@@ -19,6 +27,7 @@ export default function FilterCategoryTabs() {
       showsHorizontalScrollIndicator={false}
       contentContainerStyle={{
         gap: 20,
+        paddingLeft: 24,
       }}
       // to ensure the scroll view doesn't grow beyond its content
       style={{ flexGrow: 0 }}
@@ -26,15 +35,17 @@ export default function FilterCategoryTabs() {
       <CategoryTab
         title="All"
         icon={<CategoryTabAll />}
-        bgColor={Colors.gray}
+        bgColor={bgColor}
         activeColor={Colors.primary}
         activeTab={activeTab}
+        activeTxtColor={activeTxtColor}
         setActiveTab={setActiveTab}
       />
       <CategoryTab
         title="My"
         icon={<CategoryTabFavorite />}
-        bgColor={Colors.gray}
+        bgColor={bgColor}
+        activeTxtColor={activeTxtColor}
         activeColor={Colors.primary}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -42,15 +53,17 @@ export default function FilterCategoryTabs() {
       <CategoryTab
         title="Anxious"
         icon={<CategoryTabEmotion />}
-        bgColor={Colors.gray}
+        bgColor={bgColor}
         activeColor={Colors.primary}
         activeTab={activeTab}
+        activeTxtColor={activeTxtColor}
         setActiveTab={setActiveTab}
       />
       <CategoryTab
         title="Sleep"
         icon={<CategoryTabSleep />}
-        bgColor={Colors.gray}
+        bgColor={bgColor}
+        activeTxtColor={activeTxtColor}
         activeColor={Colors.primary}
         activeTab={activeTab}
         setActiveTab={setActiveTab}
@@ -58,9 +71,10 @@ export default function FilterCategoryTabs() {
       <CategoryTab
         title="Kids"
         icon={<CategoryTabKids />}
-        bgColor={Colors.gray}
+        bgColor={bgColor}
         activeColor={Colors.primary}
         activeTab={activeTab}
+        activeTxtColor={activeTxtColor}
         setActiveTab={setActiveTab}
       />
     </ScrollView>

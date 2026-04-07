@@ -1,6 +1,6 @@
-import { StyleSheet, Text, View } from "react-native";
-import { Fonts } from "@/src/constants/fonts";
-import { Colors } from "@/src/constants/themes";
+import { Fonts } from '@/src/constants/fonts';
+import { Colors } from '@/src/constants/themes';
+import { StyleSheet, Text, View } from 'react-native';
 
 type SectionInfoProps = {
   header: string;
